@@ -1,0 +1,111 @@
+@startuml WhiteboardSystem
+
+' Main Components
+class WhiteboardServer {
+    -List<ClientConnection> clientConnections
+    -List<String> usernames
+    -int clientID
+    +launch(port: int, username: String)
+}
+
+class Manager {
+    -JFrame frame
+    -JTextArea chatArea
+    -ShapeDrawingPanel artCanvas
+    -Listener listenerRecord
+    +initialize(name: String)
+    +showRequest(name: String)
+    +handleMenuAction(cmd: String)
+    +saveFile()
+}
+
+class Guest {
+    -Connection connection
+    -JTextArea chatArea
+    -Listener listenerRecord
+    -ShapeDrawingPanel artCanvas
+    +initialize()
+    +commonUI(toolPanel: JPanel, icons: ImageIcon[], name: String)
+}
+
+' Connection Management
+class ConnectionManager {
+    +checkin(name: String)
+    +addUser(clients: String[])
+    +handleClientLeft(client: ClientConnection)
+    +broadcast(message: String)
+    +broadcastBatch(drawRecords: ArrayList<String>)
+}
+
+class ClientConnection {
+    -Socket socket
+    -String name
+    -DataInputStream inputStream
+    -DataOutputStream outputStream
+    +run()
+    -handleBegin()
+    -handleJoinRequest(requestedName: String)
+}
+
+class Connection {
+    -Socket socket
+    -DataInputStream inputStream
+    -DataOutputStream outputStream
+    -String status
+    +launch()
+    -handleKickBroadcast(data: String)
+    -handleClientLeft(data: String)
+}
+
+' UI Components
+class ShapeDrawingPanel {
+    -ArrayList<String> recordList
+    +paint(g: Graphics)
+    +setList(recordList: ArrayList<String>)
+    +draw(g: Graphics2D, recordList: ArrayList<String>)
+}
+
+class Listener {
+    -ToolType tool
+    -Color color
+    -int thickness
+    +actionPerformed(e: ActionEvent)
+    +mousePressed(e: MouseEvent)
+    +mouseReleased(e: MouseEvent)
+    +mouseDragged(e: MouseEvent)
+}
+
+' Login Components
+class ManagerLogin {
+    -JFrame frame
+    -JTextField usernameInputField
+    +initialize()
+    -parseArguments(args: String[])
+}
+
+class UserLogin {
+    -JFrame frame
+    -JTextField usernameInputField
+    +initialize()
+    -handleLogin()
+    -connectToServer()
+}
+
+' Relationships
+WhiteboardServer --> ClientConnection : manages
+WhiteboardServer --> ConnectionManager : uses
+Manager --> WhiteboardServer : uses
+Manager --> ConnectionManager : uses
+Manager --> ShapeDrawingPanel : contains
+Manager --> Listener : uses
+Guest --> Connection : uses
+Guest --> ShapeDrawingPanel : contains
+Guest --> Listener : uses
+ClientConnection --> ConnectionManager : uses
+Connection --> Guest : used by
+ManagerLogin --> Manager : creates
+UserLogin --> Guest : creates
+Manager --> Connection : uses
+Guest --> Connection : uses
+
+@enduml 

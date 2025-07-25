@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="UserLogin">
+    <output-path>$PROJECT_DIR$/classes/artifacts/UserLogin</output-path>
+    <root id="archive" name="UserLogin.jar">
+      <element id="module-output" name="A2_DS_Demo" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/gson-2.10.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

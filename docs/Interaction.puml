@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor Guest
+participant Manager
+participant OtherGuests
+
+' --- Join Process ---
+Guest -> Manager: request <username>
+Manager --> Guest: feedback yes/no/rejected
+
+' --- Session Initialization ---
+Guest -> Manager: begin
+Manager --> Guest: send draw history + user list
+
+' --- Drawing Command ---
+Guest -> Manager: draw <drawRecord>
+Manager --> OtherGuests: draw <drawRecord>
+
+' --- Drawing Log Notification ---
+Manager -> OtherGuests: drawlog <username> is drawing
+
+' --- Chat Messaging ---
+Guest -> Manager: chat <username>: <message>
+Manager --> OtherGuests: chat <username>: <message>
+
+' --- User List Update ---
+Manager --> OtherGuests: userList <user1,user2,...>
+
+' --- User Disconnection ---
+Guest -> Manager: over
+Manager --> OtherGuests: clientout <leftUser,remainingUsers>
+
+' --- Kick User ---
+Manager -> Guest: kick <username>
+Manager --> OtherGuests: delete <kickedUser,remainingUsers>
+
+' --- System Control ---
+Manager --> OtherGuests: new_canvas <message>
+Manager --> OtherGuests: file_opened <message>
+Manager --> OtherGuests: server_shutdown
+
+@enduml

@@ -1,0 +1,329 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 300,
+    "backwardDepth": 300,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "BothDirections" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 6,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "guest.UserLogin",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1354814997 { 
+   	label=common
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   BaseListener1354814997[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BaseListener</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   endX: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   endY: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   g: Graphics2D [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   record: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   recordList: ArrayList&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   startX: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   startY: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   thickness: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   tool: ToolType [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># buildRecord(tool: ToolType, thickness: int, color: Color, startX: int, startY: int, endX: int, endY: int, extraText: String, isIntermediate: boolean): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ clearRecord()</TD></TR>
+<TR><TD ALIGN="LEFT" ># configureCursor(tool: ToolType): Cursor</TD></TR>
+<TR><TD ALIGN="LEFT" ># configureCursorAndTool(toolName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" ># displayColorChooser()</TD></TR>
+<TR><TD ALIGN="LEFT" ># drawShape(tool: ToolType, startX: int, startY: int, endX: int, endY: int)</TD></TR>
+<TR><TD ALIGN="LEFT" ># handleFreeDrawing(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" ># handleIntermediateDrawing()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseClicked(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseEntered(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseExited(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseMoved(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" ># prepareGraphics()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(line: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ShapeDrawingPanel1354814997[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ShapeDrawingPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   recordList: ArrayList&lt;String&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ draw(g: Graphics2D, recordList: ArrayList&lt;String&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >- drawLine(g: Graphics2D, params: DrawingParameters)</TD></TR>
+<TR><TD ALIGN="LEFT" >- drawOval(g: Graphics2D, params: DrawingParameters)</TD></TR>
+<TR><TD ALIGN="LEFT" >- drawRect(g: Graphics2D, params: DrawingParameters)</TD></TR>
+<TR><TD ALIGN="LEFT" >- drawText(g: Graphics2D, params: DrawingParameters, record: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >- drawTriangle(g: Graphics2D, params: DrawingParameters)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ paint(gr: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseCommonParameters(record: String[]): DrawingParameters</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1602338137 { 
+   	label=ShapeDrawingPanel
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   DrawingParameters88312164[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DrawingParameters</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   color: Color [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   endX: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   endY: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   startX: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   startY: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   thickness: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ color(): Color</TD></TR>
+<TR><TD ALIGN="LEFT" >+ endX(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ endY(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startX(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startY(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ thickness(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_835260333 { 
+   	label=manager
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   ConnectionManager835260333[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ConnectionManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addUser(clients: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ broadcast(message: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ broadcastBatch(drawRecords: ArrayList&lt;String&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ broadcastDrawLog(username: String, action: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- broadcastMessageToAll(message: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ broadcastToOthers(sender: ClientConnection, message: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ broadcastUserList()</TD></TR>
+<TR><TD ALIGN="LEFT" >- buildUserMessage(prefix: String, user: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ canvasRepaint(drawRecord: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkin(name: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ handleClientLeft(client: ClientConnection)</TD></TR>
+<TR><TD ALIGN="LEFT" >- sendMessage(client: ClientConnection, message: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateAndBroadcastUserList(kickedUser: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Listener835260333[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Listener</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- broadcastDrawCommand()</TD></TR>
+<TR><TD ALIGN="LEFT" >- broadcastDrawLog()</TD></TR>
+<TR><TD ALIGN="LEFT" >- broadcastDrawingOperation()</TD></TR>
+<TR><TD ALIGN="LEFT" >- buildRecordBasedOnTool(tool: ToolType, startX: int, startY: int, endX: int, endY: int): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleBroadcastError(ex: IOException)</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleEraseOperation()</TD></TR>
+<TR><TD ALIGN="LEFT" ># handleIntermediateDrawing()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseDragged(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mousePressed(e: MouseEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mouseReleased(e: MouseEvent)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Manager835260333[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Manager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   colorIcon: ImageIcon [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   drawLogArea: JTextArea [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   eraserIcon: ImageIcon [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   file: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   height: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   icons: ImageIcon[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   inputField: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   lineIcon: ImageIcon [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   ovalIcon: ImageIcon [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   pencilIcon: ImageIcon [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   rectangleIcon: ImageIcon [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   sendButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   triangleIcon: ImageIcon [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   userJList: JList [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   width: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- handleMenuAction(cmd: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- initialize(name: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ openFile(file: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFile(file: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFile()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveImg(file: String, format: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showRequest(name: String): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_98708952 { 
+   	label=guest
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Connection98708952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Connection</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   inputStream: DataInputStream [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   kick: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   outputStream: DataOutputStream [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   socket: Socket [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   status: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- handleClientLeft(data: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleKickBroadcast(data: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ launch()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resetStatus()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UserLogin98708952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UserLogin</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   usernameInputField: JTextField [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- cleanupAndExit()</TD></TR>
+<TR><TD ALIGN="LEFT" >- connectToServer()</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleLogin()</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleRejection()</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleStatusResponse(status: String, username: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleTimeout()</TD></TR>
+<TR><TD ALIGN="LEFT" >- initialize()</TD></TR>
+<TR><TD ALIGN="LEFT" >- initializeGuestBoard(username: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseArguments(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >- showMessageAndReset(message: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- waitForStatusUpdate(): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+BaseListener1354814997 -> Listener835260333[arrowhead=none, arrowtail=empty, dir=both];
+ConnectionManager835260333 -> BaseListener1354814997[label="canvasRepaint() -> update()"];
+ConnectionManager835260333 -> Manager835260333[label="checkin() -> showRequest()"];
+Manager835260333 -> ShapeDrawingPanel1354814997[label="saveImg() -> draw()"];
+    
+}
+@enduml
